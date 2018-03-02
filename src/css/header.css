@@ -1,0 +1,25 @@
+.header-index {
+    position: fixed;
+    transform: translateZ(0);
+    top: 0;
+    z-index: 4;
+    height: 1.333rem;
+    width: 100%;
+    background: #00a2ea;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    font-size: .427rem;
+    color:#fff;
+}
+.header-index .title{
+    flex: 1;
+}
+.header-index > div {
+    padding:0 0.3rem;
+}
+.header-index .iconfont {
+    font-size: .6rem;
+    margin-left: .3rem;
+}
