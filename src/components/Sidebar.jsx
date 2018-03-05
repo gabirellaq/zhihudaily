@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import superagent from '../util/superagent.js';
 import emitter from '../util/event.js';
 import '../css/sliderbar.css';
@@ -9,7 +9,8 @@ class Sidebar extends React.Component {
         super(props);
         this.state = {
             themes: [],
-            active: null
+            active: null,
+            name: null
         }
     }
 
@@ -39,6 +40,13 @@ class Sidebar extends React.Component {
             })
         }
     }
+
+    getTitle(msg) {
+        return () => {
+            emitter.emit("isTitle", msg);
+        }
+    }
+
     render() {
         return(
             <div className="side">
@@ -60,28 +68,28 @@ class Sidebar extends React.Component {
                         </div>
                     </div>
                     <div className = "sidebar-list">  
-                        <Router>
                         <ul className="sidebar-list-ul">
                             <li className="sidebar-home" onClick={this.toggleSidebar('')}>
-                                <Link to="/">
+                                <Link to="/" onClick={this.getTitle("首页")}>
                                     <i className="iconfont icon-shouye"></i>
                                     <span>首页</span>
                                 </Link>
                             </li>
                             {this.state.themes.map(item => 
                                 <li key={item.id} onClick={this.toggleSidebar('')}>
-                                    <Link to={`/theme?id=${item.id}`}>
+                                    <Link to={`/theme/${item.id}`} onClick={this.getTitle(item.name)}>
                                         <span>{item.name}</span>
                                         <i className="iconfont icon-jia"></i>
                                     </Link>
                                 </li>
                             )}
                         </ul>
-                        </Router>
                     </div>
                 </div>
                 <div onClick={this.toggleSidebar('')} className={ this.state.active ==='active' ?  "sidebar-mask" : ""}></div>
+                
             </div>
+            
         )
     }
 }

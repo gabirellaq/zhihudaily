@@ -13,10 +13,9 @@ class ListTheme extends React.Component {
         }
         
     }
-    componentDidMount() {
-        let id = this.props.location.search.substring(4);
-        console.log(id);
-        superagent("get", "theme/"+id)
+
+    getThemeData(id) {     
+         superagent("get", "theme/"+id)
             .then(res => {
                 let imgArr = [
                     {
@@ -30,6 +29,18 @@ class ListTheme extends React.Component {
                     image: imgArr
                 })
             });
+    }
+
+    componentWillMount() {
+        let id = this.props.match.params.id;
+        this.getThemeData(id);
+    }
+    componentDidUpdate(prevProps) {
+        let oldThemeId = prevProps.match.params.id;
+        let newThemeId  = this.props.match.params.id;
+        if (oldThemeId !== newThemeId) {
+            this.getThemeData(newThemeId);
+        }
     }
 
     render() {

@@ -1,5 +1,5 @@
 import React from 'react';
-//import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/listItem.css';
 
 class ListItem extends React.Component {
@@ -7,7 +7,7 @@ class ListItem extends React.Component {
         const item = this.props.item;
         return(
             <li className="list-item-li">
-                <a>
+                <Link to={`/news/${item.id}`}>
                     <span className="text">
                         {item.title}
                     </span>
@@ -28,9 +28,8 @@ class ListItem extends React.Component {
                                 </span>
                             )
                         }
-                    })()}
-                    
-                </a>
+                    })()}                    
+                </Link>
             </li>
         )
     }
