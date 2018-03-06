@@ -10,6 +10,8 @@ import Sidebar from './components/Sidebar.jsx';
 import List from './components/List.jsx';
 import ListTheme from './components/ListTheme.jsx';
 import NewsDetail from './components/NewsDetail.jsx';
+import SectionDetail from './components/SectionDetail.jsx';
+import Comments from './components/Comments.jsx';
 
 
 ReactDOM.render(
@@ -20,6 +22,8 @@ ReactDOM.render(
         <Route exact path="/" component={List} />
         <Route path="/theme/:id" component={ListTheme} />
         <Route path="/news/:id" component={NewsDetail} />
+        <Route path="/section/:id" component={SectionDetail} />
+        <Route path="/comments/:id/:sum/:long/:short" component={Comments} />
     </div>
 </Router>,
 document.getElementById('root')

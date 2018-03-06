@@ -5,6 +5,9 @@ body {
   font-size: 12px;
   background: #f9f9f9;
   color:#666;
+  max-width: 1024px;
+  margin:auto;
+  word-break: break-all;
 }
 
 img {
@@ -75,6 +78,19 @@ a {
 }
 .newsContent img {
   max-width: 100%;
+}
+.newsContent .bio {
+  color: #999;
+}
+
+.newsContent blockquote {
+  color: #9da3a6;
+  border-left: .08rem solid #dfe3e6;
+  font-style: normal;
+  display: block;
+  font-size: 100%;
+  margin: .5em 0;
+  padding: 0 0 0 1em;
 }
 .section-box {
   background: #fff;

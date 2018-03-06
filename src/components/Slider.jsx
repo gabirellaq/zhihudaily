@@ -1,5 +1,5 @@
 import React from 'react';
-//import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/slider.css';
 import filter from '../util/filter.js';
 import Swiper from 'swiper';
@@ -31,9 +31,10 @@ class Slider extends React.Component {
                     <div className="swiper-wrapper">
                         {slider.map(item=>
                             <div key={item.id} className="swiper-slide" style={{backgroundImage: 'url(' + filter.replaceUrl(item.image) + ')' }} >
-                                <div className="swiper-mask"></div>
-                                <h1 className="slider-title">{item.title}</h1>
-                                
+                                <Link to={`news/${item.id}`}>
+                                    <span className="swiper-mask"></span>
+                                    <span className="slider-title">{item.title}</span>
+                                </Link>
                             </div>
                         )}
                     </div>

@@ -9,7 +9,14 @@ class ListItem extends React.Component {
             <li className="list-item-li">
                 <Link to={`/news/${item.id}`}>
                     <span className="text">
-                        {item.title}
+                        <span>{item.title}</span>
+                        {(() => {  
+                            if(item.display_date) {
+                                return (
+                                    <span className="date">{item.display_date}</span>
+                                )
+                            }  
+                        })()} 
                     </span>
                     {(() => {
                         if(item.images) {
@@ -28,7 +35,8 @@ class ListItem extends React.Component {
                                 </span>
                             )
                         }
-                    })()}                    
+                    })()}     
+                               
                 </Link>
             </li>
         )

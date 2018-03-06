@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import superagent from '../util/superagent.js';
 import Slider from './Slider.jsx';
 import filter from '../util/filter.js';
+import HeaderSecond from './HeaderSecond.jsx';
 
 class NewsDetail extends React.Component {
     constructor(props) {
@@ -10,7 +11,12 @@ class NewsDetail extends React.Component {
         this.state = {
             body: '',
             image: [],
-            section: {}
+            section: {},
+            popularity:0,
+            comments:0,
+            short_comments:0,
+            long_comments:0,
+            id:0,
         }
     }
 
@@ -24,7 +30,8 @@ class NewsDetail extends React.Component {
         }
     }
 
-    getNewsDetailData(id) {     
+    getNewsDetailData(id) { 
+        //新闻详细内容    
         superagent("get", "news/"+id)
            .then(res => {
                let imgArr = [
@@ -37,7 +44,18 @@ class NewsDetail extends React.Component {
                this.setState({
                    body: res.body,
                    image: imgArr,
-                   section: res.section || ''
+                   section: res.section || '',
+                   id: res.id
+               })
+           });
+        //新闻额外信息，评论数，点赞数……
+        superagent("get", "story-extra/"+id)
+           .then(res => {
+               this.setState({
+                    popularity: res.popularity,
+                    short_comments: res.short_comments,
+                    long_comments: res.long_comments,
+                    comments: res.comments, //sum
                })
            });
    }
@@ -49,7 +67,8 @@ class NewsDetail extends React.Component {
     render() {
         let section = this.state.section;
         return(
-            <div className="list-wrap">
+            <div className="list-wrap hasHeaderSecond">
+                <HeaderSecond header={this.state} />
                 <Slider slider={this.state.image}></Slider>
                 <div className="newsContent" dangerouslySetInnerHTML={this.toBody()}></div>
                 {(()=>{

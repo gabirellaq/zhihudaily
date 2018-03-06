@@ -21,9 +21,7 @@ class List extends React.Component {
                 })
             });
     }
-    toggleSidebar() {
 
-    }
     render() {
         return(
             <div className="list-wrap">

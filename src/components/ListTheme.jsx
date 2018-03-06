@@ -46,6 +46,7 @@ class ListTheme extends React.Component {
     render() {
         return(
             <div className="list-wrap">
+                
                 <Slider slider={this.state.image}></Slider>
                 <ul>
                     {this.state.stories.map(subitem =>
